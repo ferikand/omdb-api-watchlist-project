@@ -37,9 +37,7 @@ async function renderMovies(inpValue) {
   imdbIdArr.forEach((el) => {
     fetch(`http://www.omdbapi.com/?i=${el}&apikey=${myId}`)
       .then((res) => res.json())
-      .then((data) => {
-        resultsField.innerHTML += getHtml(data);
-      });
+      .then((data) => (resultsField.innerHTML += getHtml(data)));
   });
 }
 
