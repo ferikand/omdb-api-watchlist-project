@@ -14,6 +14,6 @@ searchBtn.addEventListener("click", async (e) => {
   searchInp.value = "";
 });
 
-async function showNodeListgit() {
+async function showNodeList() {
   console.log(document.querySelectorAll("#addto-watchlist"));
 }
