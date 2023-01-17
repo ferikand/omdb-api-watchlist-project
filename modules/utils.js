@@ -31,9 +31,7 @@ async function renderMovies(inpValue) {
   // getting imdbIDs and put them into imdbIdArr
   await fetch(`http://www.omdbapi.com/?s=${inpValue}&apikey=${myId}`)
     .then((res) => res.json())
-    .then((data) => {
-      imdbIdArr = data.Search.map((el) => el.imdbID);
-    });
+    .then((data) => (imdbIdArr = data.Search.map((el) => el.imdbID)));
 
   // getting list of movies by IDs from imdbIdArr
   imdbIdArr.forEach((el) => {
