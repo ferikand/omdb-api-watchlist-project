@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,700;0,900;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="headline">
+          <h1 id="find-your-film-area">Find your film</h1>
+          <p id="my-watchlist-area"><a href="wathlist.html">My Watchlist</a></p>
+        </div>
+        <form action="" id="search">
+          <div id="search-bar">
+            <img
+              class="search-icon"
+              src="images/icons/Search.png"
+              alt="search icon"
+            />
+            <input
+              type="text"
+              placeholder="Search for a movie"
+              id="search-inp"
+            />
+          </div>
+          <div id="search-button">
+            <button type="submit" id="search-btn">Search</button>
+          </div>
+        </form>
+      </header>
+      <div class="results-area">
+        <div id="results">
+          <!-- <div class="test">something1</div>
+          <div class="test">something2</div>
+          <div class="test">something3</div> -->
+        </div>
+      </div>
+      <div class="results-area">
+        <div id="results-added"></div>
+      </div>
+    </div>
+    <script type="module" src="modules/script.js" async defer></script>
+  </body>
+</html>
