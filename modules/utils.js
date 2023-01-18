@@ -1,4 +1,4 @@
-import { myId, resultsField } from "./variables.js";
+import { myId, resultsField } from './variables.js';
 
 let imdbIdArr = [];
 
@@ -16,7 +16,7 @@ function getHtml(data) {
           <p class="duration">${data.Runtime}</p>
           <p class="genre">${data.Genre}</p>
           <div id="addto-watchlist">
-            <img src="images/icons/add-icon.png" alt="add sign icon" />
+            <img src="images/icons/add-icon.png" alt="add sign icon" class="addto-watchlist__icon" />
             <p>Watchlist</p>
           </div>
         </div>
@@ -27,17 +27,23 @@ function getHtml(data) {
 }
 
 async function renderMovies(inpValue) {
-  resultsField.innerHTML = "";
+  resultsField.innerHTML = '';
   // getting imdbIDs and put them into imdbIdArr
-  await fetch(`http://www.omdbapi.com/?s=${inpValue}&apikey=${myId}`)
-    .then((res) => res.json())
-    .then((data) => (imdbIdArr = data.Search.map((el) => el.imdbID)));
+  await fetch(
+    `http://www.omdbapi.com/?s=${inpValue}&apikey=${myId}`
+  )
+    .then(res => res.json())
+    .then(data => {
+      imdbIdArr = data.Search.map(el => el.imdbID);
+    });
 
   // getting list of movies by IDs from imdbIdArr
-  imdbIdArr.forEach((el) => {
+  imdbIdArr.forEach(el => {
     fetch(`http://www.omdbapi.com/?i=${el}&apikey=${myId}`)
-      .then((res) => res.json())
-      .then((data) => (resultsField.innerHTML += getHtml(data)));
+      .then(res => res.json())
+      .then(
+        data => (resultsField.innerHTML += getHtml(data))
+      );
   });
 }
 
