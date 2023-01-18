@@ -1,4 +1,4 @@
-import { myId, resultsField } from './variables.js';
+import { myId, resultsField, resultsAdded } from "./variables.js";
 
 let imdbIdArr = [];
 
@@ -27,24 +27,63 @@ function getHtml(data) {
 }
 
 async function renderMovies(inpValue) {
-  resultsField.innerHTML = '';
+  resultsField.innerHTML = "";
   // getting imdbIDs and put them into imdbIdArr
-  await fetch(
-    `http://www.omdbapi.com/?s=${inpValue}&apikey=${myId}`
-  )
-    .then(res => res.json())
-    .then(data => {
-      imdbIdArr = data.Search.map(el => el.imdbID);
+  await fetch(`http://www.omdbapi.com/?s=${inpValue}&apikey=${myId}`)
+    .then((res) => res.json())
+    .then((data) => {
+      imdbIdArr = data.Search.map((el) => el.imdbID);
     });
 
   // getting list of movies by IDs from imdbIdArr
-  imdbIdArr.forEach(el => {
+  imdbIdArr.forEach((el) => {
     fetch(`http://www.omdbapi.com/?i=${el}&apikey=${myId}`)
-      .then(res => res.json())
-      .then(
-        data => (resultsField.innerHTML += getHtml(data))
-      );
+      .then((res) => res.json())
+      .then((data) => (resultsField.innerHTML += getHtml(data)));
   });
 }
 
-export { renderMovies };
+function renderFromLocalStorage() {
+  resultsAdded.innerHTML = "";
+  for (let i = localStorage.length - 1; i >= 0; i--) {
+    resultsAdded.insertAdjacentHTML(
+      "afterbegin",
+      localStorage[localStorage.key(i)]
+    );
+  }
+}
+
+resultsAdded.addEventListener("click", function (e) {
+  if (e.target.classList[0] === "addto-watchlist__icon") {
+    localStorage.removeItem(
+      `${e.target.parentElement.parentElement.parentElement.firstChild.nextSibling.textContent}`
+    );
+
+    renderFromLocalStorage();
+  }
+});
+
+function onMovieClick(e) {
+  if (e.target.classList[0] === "addto-watchlist__icon") {
+    if (e.target.getAttribute("src") === "images/icons/add-icon.png") {
+      e.target.setAttribute("src", "images/icons/remove-icon.png");
+
+      localStorage.setItem(
+        `${e.target.parentElement.parentElement.parentElement.firstChild.nextSibling.textContent}`,
+        `${e.target.parentElement.parentElement.parentElement.parentElement.outerHTML}`
+      );
+
+      e.target.setAttribute("src", "images/icons/add-icon.png");
+
+      renderFromLocalStorage();
+    } else {
+      localStorage.removeItem(
+        `${e.target.parentElement.parentElement.parentElement.firstChild.nextSibling.textContent}`
+      );
+
+      renderFromLocalStorage();
+    }
+  }
+}
+
+export { renderMovies, renderFromLocalStorage, onMovieClick };
