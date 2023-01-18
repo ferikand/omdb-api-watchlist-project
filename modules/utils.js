@@ -73,7 +73,7 @@ function onMovieClick(e) {
         `${e.target.parentElement.parentElement.parentElement.parentElement.outerHTML}`
       );
 
-      e.target.setAttribute("src", "images/icons/add-icon.png");
+      // e.target.setAttribute("src", "images/icons/add-icon.png");
 
       renderFromLocalStorage();
     } else {
@@ -81,6 +81,7 @@ function onMovieClick(e) {
         `${e.target.parentElement.parentElement.parentElement.firstChild.nextSibling.textContent}`
       );
 
+      e.target.setAttribute("src", "images/icons/add-icon.png");
       renderFromLocalStorage();
     }
   }
