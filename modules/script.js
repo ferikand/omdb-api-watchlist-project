@@ -7,6 +7,7 @@ import {
   findFilmBtn,
   first,
   second,
+  search,
 } from "./variables.js";
 
 renderFromLocalStorage();
@@ -29,11 +30,13 @@ myWatchlitBtn.addEventListener("click", function () {
 
     second.classList.remove("hidden");
     first.classList.add("hidden");
+    search.classList.add("hidden");
   } else {
     myWatchlitBtn.textContent = "My Watchlist";
     findFilmBtn.textContent = "Find your film";
 
     first.classList.remove("hidden");
+    search.classList.remove("hidden");
     second.classList.add("hidden");
   }
 });

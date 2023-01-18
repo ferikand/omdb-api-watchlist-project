@@ -8,6 +8,7 @@ const myWatchlitBtn = document.querySelector("#my-watchlist-area");
 const findFilmBtn = document.querySelector("#find-your-film-area");
 const first = document.querySelector("#first-area");
 const second = document.querySelector("#second-area");
+const search = document.querySelector("#search");
 
 // const toggleIcon = movie => {
 //   if (
@@ -43,4 +44,5 @@ export {
   findFilmBtn,
   first,
   second,
+  search,
 };
